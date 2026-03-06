@@ -175,7 +175,7 @@ resource "aws_iam_role_policy_attachment" "kkp_node_group_role_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "kkp_node_group_cni_policy" {
-  role       = aws_iam_role.devopsshack_node_group_role.name
+  role       = aws_iam_role.kkp_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
 }
 
