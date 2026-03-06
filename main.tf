@@ -2,7 +2,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_vpc" "devopsshack_vpc" {
+resource "aws_vpc" "kkp_vpc" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
