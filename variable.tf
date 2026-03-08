@@ -1,5 +1,10 @@
 variable "ssh_key_name" {
-  description = "The name of the SSH key pair to use for instances"
+  description = "EC2 Key Pair name for SSH access to nodes (optional)"
   type        = string
-  default     = "kkp"
+  default     = ""
+  
+  validation {
+    condition     = var.ssh_key_name == "" || can(regex("^[a-zA-Z0-9_-]+$", var.ssh_key_name))
+    error_message = "SSH key name must contain only alphanumeric characters, hyphens, and underscores."
+  }
 }
