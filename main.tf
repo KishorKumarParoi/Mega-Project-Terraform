@@ -101,10 +101,21 @@ resource "aws_eks_addon" "ebs_csi_driver" {
   cluster_name    = aws_eks_cluster.kkp.name
   addon_name      = "aws-ebs-csi-driver"
   
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "15m"
+  }
+  
   resolve_conflicts_on_create = "OVERWRITE"
   resolve_conflicts_on_update = "OVERWRITE"
+  
+  # Prevent destruction on terraform apply/destroy
+  lifecycle {
+    prevent_destroy = true
+    ignore_changes  = [tags]
+  }
 }
-
 
 resource "aws_eks_node_group" "kkp" {
   cluster_name    = aws_eks_cluster.kkp.name
